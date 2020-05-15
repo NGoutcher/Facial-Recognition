@@ -8,7 +8,7 @@ class App(tk.Tk):
     def __init__(self, parent):
         tk.Tk.__init__(self, parent)
         self.title("Facial Recognition | Choose File")
-
+        self.minsize(width=300, height=50)
         font = ("Arial", 9)
         buttonBrowse = tk.Button(self, text="Browse", command=self.load_file, width=10, font=font).pack()
         self.panel = tk.Label(self, image='')
@@ -39,7 +39,6 @@ class App(tk.Tk):
         for (x, y, w, h) in faces:
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-        #cv2.imshow("Faces found", self.resizeKeepAR(image, width=480))
         img = cv2.cvtColor(self.resizeKeepAR(img, width=300), cv2.COLOR_BGR2RGB)
         self.show_image(Image.fromarray(img))
 
