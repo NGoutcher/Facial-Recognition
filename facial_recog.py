@@ -39,7 +39,8 @@ class App(tk.Tk):
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
         #cv2.imshow("Faces found", self.resizeKeepAR(image, width=480))
-        self.show_image(Image.fromarray(self.resizeKeepAR(img, width=300)))
+        img = cv2.cvtColor(self.resizeKeepAR(img, width=300), cv2.COLOR_BGR2RGB)
+        self.show_image(Image.fromarray(img))
 
     def show_image(self, img):
         imgtk = ImageTk.PhotoImage(image=img)
