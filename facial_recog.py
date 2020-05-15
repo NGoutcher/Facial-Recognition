@@ -13,7 +13,7 @@ class App(tk.Tk):
 
         menu = tk.Menu(self)
         self.config(menu=menu)
-        fileMenu = tk.Menu(menu)
+        fileMenu = tk.Menu(menu, tearoff=False)
         menu.add_cascade(label="File", menu=fileMenu)
         fileMenu.add_command(label="Open File", command=self.load_file)
 
