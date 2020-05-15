@@ -10,7 +10,13 @@ class App(tk.Tk):
         self.title("Facial Recognition | Choose File")
         self.minsize(width=300, height=50)
         font = ("Arial", 9)
-        buttonBrowse = tk.Button(self, text="Browse", command=self.load_file, width=10, font=font).pack()
+
+        menu = tk.Menu(self)
+        self.config(menu=menu)
+        fileMenu = tk.Menu(menu)
+        menu.add_cascade(label="File", menu=fileMenu)
+        fileMenu.add_command(label="Open File", command=self.load_file)
+
         self.panel = tk.Label(self, image='')
 
     def load_file(self):
@@ -32,7 +38,7 @@ class App(tk.Tk):
         img = cv2.imread(imagePath)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        faces = faceCascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
+        faces = faceCascade.detectMultiScale(gray, scaleFactor=1.35, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
 
         print("Found {0} faces!".format(len(faces)))
 
