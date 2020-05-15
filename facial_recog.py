@@ -11,6 +11,7 @@ class App(tk.Tk):
 
         font = ("Arial", 9)
         buttonBrowse = tk.Button(self, text="Browse", command=self.load_file, width=10, font=font).pack()
+        self.panel = tk.Label(self, image='')
 
     def load_file(self):
         fname = tk.filedialog.askopenfilename(filetypes=(('image files', '.png'), ('image files', '.jpg')))
@@ -45,9 +46,10 @@ class App(tk.Tk):
     def show_image(self, img):
         imgtk = ImageTk.PhotoImage(image=img)
 
-        panel = tk.Label(self, image=imgtk)
-        panel.image = imgtk
-        panel.pack(side="bottom", fill="both", expand="yes")
+        self.panel.config(image='')
+        self.panel.image = imgtk
+        self.panel.config(image=imgtk)
+        self.panel.pack(side="bottom", fill="both", expand="yes")
 
     def resizeKeepAR(self, image, width=None, height=None, interpolation=cv2.INTER_AREA):
         (h, w) = image.shape[:2]
